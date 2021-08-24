@@ -1,3 +1,5 @@
+package Strings;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.LoginPage;
@@ -23,7 +25,7 @@ public class BaseTest {
     public LoginPage loginPage (ChromeDriver driver, LoginPage clickSubmitButtonSuccess) {
         LoginPage loginPage = new LoginPage();
         LoginPage.enterEmailAddress(Strings.VALID_USER);
-        loginPage.enterPassword(Strings.VALID_PASSWORD);
+        LoginPage.enterPassword(Strings.VALID_PASSWORD);
         loginPage = clickSubmitButtonSuccess;
         return loginPage;
     }
