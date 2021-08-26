@@ -1,6 +1,5 @@
 package pages;
 
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -45,7 +44,7 @@ public class LoginPage {
     WebElement zaboravljenaLozinkaerrorMessage;
 
     ChromeDriver driver=null;
-    public LoginPage (@NotNull ChromeDriver driver) {
+    public LoginPage (ChromeDriver driver) {
         driver.get("https://gigatron.rs/");
         PageFactory.initElements(driver, this);
         this.driver=driver;

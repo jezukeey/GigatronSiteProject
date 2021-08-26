@@ -1,3 +1,4 @@
+import io.opentelemetry.api.internal.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -22,7 +23,7 @@ public class LoginTests extends BaseTest {
     @Test
     public void testSuccessfulLogIn() {
         ChromeDriver driver = openChromeDriver();
-        LoginPage loginPage = new LoginPage();
+        LoginPage LoginPage = new LoginPage(driver);
         WebElement userNameField=driver.findElement(By.id("email"));
         userNameField.click();
         userNameField.sendKeys(Strings.VALID_USER);
@@ -54,6 +55,7 @@ public class LoginTests extends BaseTest {
 //     * 4.Verify that user is not logged in, stays on login page
 //     *  Verify that error message is shown
 //     */
+//
 //    @Test
 //    public void testInvalidUsernameAndValidPass() {
 //        ChromeDriver driver=openChromeDriver();
