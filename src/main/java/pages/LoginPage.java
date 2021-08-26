@@ -43,14 +43,12 @@ public class LoginPage {
     WebElement zaboravljenaLozinkaerrorMessage;
 
     ChromeDriver driver = null;
-    public LoginPage () {
-        driver.get("https://www.gigatron.rs/login");
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+    public LoginPage (ChromeDriver driver) {
+        this.driver.get("https://www.gigatron.rs/login");
+        PageFactory.initElements(this.driver, this);
+        this.driver = this.driver;
     }
 
-    public LoginPage (ChromeDriver driver) {
-    }
 
     public static void enterEmailAddress(String validUser) {
     }
@@ -64,7 +62,7 @@ public class LoginPage {
 
     public LoginPage clickSubmitButtonSuccess() {
         loginSubmitButton.click();
-        return new LoginPage();
+        return new LoginPage(driver);
     }
 
     public static void enterPassword(String validPassword) {

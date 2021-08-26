@@ -22,8 +22,7 @@ public class LoginTests extends BaseTest {
    @Test
     public void testSuccessfulLogIn() {
         ChromeDriver driver = openChromeDriver();
-        LoginPage loginPage;
-        loginPage=new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
        WebElement userNameField=driver.findElement(By.id("email"));
         userNameField.click();
         userNameField.sendKeys(Strings.VALID_USER);
@@ -36,10 +35,10 @@ public class LoginTests extends BaseTest {
 
         driver.quit();
     }
-    private void enterUserName(String validUserName) {
-    }
-    private void enterPassword(String validPassword) {
-    }
+//    private void enterUserName(String validUserName) {
+//    }
+//    private void enterPassword(String validPassword) {
+//    }
 
 
 //    /**
