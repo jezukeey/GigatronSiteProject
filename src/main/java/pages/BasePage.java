@@ -13,9 +13,7 @@ import java.time.Duration;
 
 public class BasePage {
 
-    //Polje za pretragu
-    @FindBy(id="searchbox")
-    WebElement searchInputField;
+
 
     //Side bar burger button
     @FindBy(className="burger-button")
@@ -46,11 +44,11 @@ public class BasePage {
     WebElement logoutButton;
 
 
-    ChromeDriver driver=null;
+    ChromeDriver driver = null;
 
     public BasePage(ChromeDriver driver) {
         PageFactory.initElements(driver, this);
-        this.driver=driver;
+        this.driver = driver;
     }
 
     public BasePage clickBurgerButton() {
@@ -63,9 +61,9 @@ public class BasePage {
         return this;
     }
 
-    public loginSubmitButton clickloginButtonField() {
+    public loginSubmitButton clickingSubmitButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        WebElement clickloginSubmitButton;
+        WebElement clickingSubmitButton;
         loginSubmitButton.click();
         final var loginSubmitButton=loginSubmitButton(driver);
         return loginSubmitButton(driver);

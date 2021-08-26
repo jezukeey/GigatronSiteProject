@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
     public static String VALID_USER="VALID_USER";
+    public static String VALID_PASSWORD="VALID_PASSWORD";
 
 
     //  Ulogujte se koristeci Vas email i lozinku.
@@ -43,17 +44,17 @@ public class LoginPage {
     WebElement zaboravljenaLozinkaerrorMessage;
 
     ChromeDriver driver = null;
-    public LoginPage (ChromeDriver driver) {
-        this.driver.get("https://www.gigatron.rs/login");
-        PageFactory.initElements(this.driver, this);
-        this.driver = this.driver;
+    public LoginPage(ChromeDriver driver) {
+        driver.get("https://www.gigatron.rs/");
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-
-    public static void enterEmailAddress(String validUser) {
+    @org.jetbrains.annotations.Contract(pure=true)
+    public LoginPage () {
     }
 
-    public  LoginPage enterEmailAddress(String emailField, WebElement email) {
+    private LoginPage enterEmailAddress (String emailField, WebElement email) {
         assert email.isDisplayed();
         email.sendKeys(emailField);
         return this;
@@ -62,7 +63,11 @@ public class LoginPage {
 
     public LoginPage clickSubmitButtonSuccess() {
         loginSubmitButton.click();
-        return new LoginPage(driver);
+        return new LoginPage();
+    }
+
+
+    public static void enterEmailAddress(String validUser) {
     }
 
     public static void enterPassword(String validPassword) {

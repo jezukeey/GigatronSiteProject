@@ -1,4 +1,4 @@
-import Strings.BaseTest;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -19,7 +19,7 @@ public class LoginTests extends BaseTest {
      * Expected result:
      * 4.Verify that user is logged in
      */
-   @Test
+    @Test
     public void testSuccessfulLogIn() {
         ChromeDriver driver = openChromeDriver();
         LoginPage loginPage = new LoginPage();
@@ -36,10 +36,10 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-    private void enterUserName(String validUserName) {
-    }
-    private void enterPassword(String validPassword) {
-    }
+//    private void enterUserName(String validUserName) {
+//    }
+//    private void enterPassword(String validPassword) {
+//    }
 
 
 //    /**

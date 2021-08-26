@@ -1,11 +1,15 @@
 import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.BasePage;
 import pages.KorisnikPage;
 import pages.Strings;
 
 import java.util.List;
 
-public class SortingTests extends BaseTest{
+public class SortingTests extends BasePage {
+    public SortingTests (ChromeDriver driver) {
+        super(driver);
+    }
 
     //Test for sorting in ascending order
 //    @Test
