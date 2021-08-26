@@ -23,7 +23,7 @@ public class LoginTests extends BaseTest {
     public void testSuccessfulLogIn() {
         ChromeDriver driver = openChromeDriver();
         LoginPage loginPage = new LoginPage();
-       WebElement userNameField=driver.findElement(By.id("email"));
+        WebElement userNameField=driver.findElement(By.id("email"));
         userNameField.click();
         userNameField.sendKeys(Strings.VALID_USER);
         WebElement passwordField=driver.findElement(By.id("password"));

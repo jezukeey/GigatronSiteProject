@@ -1,5 +1,6 @@
 package pages;
 
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -43,18 +44,18 @@ public class LoginPage {
     @FindBy(className = "form-control-info")
     WebElement zaboravljenaLozinkaerrorMessage;
 
-    ChromeDriver driver = null;
-    public LoginPage(ChromeDriver driver) {
-        driver.get("https://www.gigatron.rs/");
+    ChromeDriver driver=null;
+    public LoginPage (@NotNull ChromeDriver driver) {
+        driver.get("https://gigatron.rs/");
         PageFactory.initElements(driver, this);
-        this.driver = driver;
+        this.driver=driver;
     }
 
     @org.jetbrains.annotations.Contract(pure=true)
     public LoginPage () {
     }
 
-    private LoginPage enterEmailAddress (String emailField, WebElement email) {
+    public LoginPage enterEmailAddress (String emailField, WebElement email) {
         assert email.isDisplayed();
         email.sendKeys(emailField);
         return this;
