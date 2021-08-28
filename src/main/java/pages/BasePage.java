@@ -19,6 +19,10 @@ public class BasePage {
     @FindBy(className="burger-button")
     WebElement proizvodiSideBarLink;
 
+    //Side bar close burger button
+    @FindBy (xpath = "[/@class = \"close-menu\"]")
+    WebElement closeBurgerButton;
+
     //Polje za prijavu
     @FindBy(id="hd-reg")
     WebElement loginButtonField;
@@ -61,25 +65,6 @@ public class BasePage {
         return this;
     }
 
-    public loginSubmitButton clickingSubmitButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        WebElement clickingSubmitButton;
-        loginSubmitButton.click();
-        final var loginSubmitButton=loginSubmitButton(driver);
-        return loginSubmitButton(driver);
-    }
 
-    public loginSubmitButton loginSubmitButton(ChromeDriver driver) {
-        loginSubmitButton submitButton=loginSubmitButton(driver);
-        return submitButton(driver);
-    }
-
-    private BasePage.loginSubmitButton submitButton(ChromeDriver driver) {
-        this.driver=driver;
-        return null;
-    }
-
-    public static class loginSubmitButton {
-    }
 
 }

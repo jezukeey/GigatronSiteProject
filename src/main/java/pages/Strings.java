@@ -10,6 +10,7 @@ public class Strings {
     public static final String INVALID_PASSWORD = "invalidpassword";
 
     //urls
+    public static final String MAIN_URL = "https://gigatron.rs/";
     public static final String LOGIN_URL = "https://www.gigatron.rs/login";
     public static final String KORISNIK_URL = "https://www.gigatron.rs/korisnik";
     public static final String AKCIJE_URL = "https://www.gigatron.rs/akcije";

@@ -4,6 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -17,7 +21,7 @@ public class LoginPage {
 
     // E-mail field
     @FindBy(id = "email")
-    WebElement EmailField;
+    WebElement emailField;
 
     //  Password field
     @FindBy(id = "password")
@@ -45,32 +49,35 @@ public class LoginPage {
 
     ChromeDriver driver=null;
     public LoginPage (ChromeDriver driver) {
-        driver.get("https://gigatron.rs/");
+        driver.get("https://gigatron.rs/login/");
         PageFactory.initElements(driver, this);
         this.driver=driver;
     }
 
+    public LoginPage enterEmailAddress (String emailAdresse) {
+        //Check first if webelement is displayed on a web page
+        assert emailField.isDisplayed();
+        emailField.sendKeys(emailAdresse);
+        return this;
+    }
 
-    public LoginPage enterEmailAddress (String emailField, WebElement email) {
-        assert email.isDisplayed();
-        email.sendKeys(emailField);
+    public LoginPage enterPassword(String password) {
+        passwordField.sendKeys(password);
         return this;
     }
 
 
-    public LoginPage clickSubmitButtonSuccess() {
+    public KorisnikPage clickSubmitButtonSuccess() {
         loginSubmitButton.click();
-        return new LoginPage();
+        return new KorisnikPage(driver);
     }
-
-
-    public static void enterEmailAddress(String validUser) {
+    public LoginPage clickSubmitButtonFailure() {
+        loginSubmitButton.click();
+        return this;
     }
-
-    public static void enterPassword(String validPassword) {
-    }
-    @org.jetbrains.annotations.Contract(pure=true)
-    public LoginPage () {
+    public String getErrorMessage() {
+        String errorMessage = errorMessageContainer.getText();
+        return errorMessage;
     }
 
 //    public String getErrorMessage() {

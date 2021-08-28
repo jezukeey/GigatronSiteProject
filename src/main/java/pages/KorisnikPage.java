@@ -18,7 +18,7 @@ public class KorisnikPage extends BasePage {
     public KorisnikPage(ChromeDriver driver) {
         super(driver);
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue("Korišćenje podataka korisnika", currentUrl.equals(Strings.KORISNIK_URL));
+        Assert.assertEquals("Korišćenje podataka korisnika", Strings.KORISNIK_URL, currentUrl);
     }
 
 }

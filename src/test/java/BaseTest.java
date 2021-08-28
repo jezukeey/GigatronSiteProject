@@ -1,6 +1,9 @@
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.KorisnikPage;
 import pages.LoginPage;
+import pages.Strings;
+
 
 public class BaseTest {
     ChromeDriver driver = null;
@@ -17,15 +20,17 @@ public class BaseTest {
         return driver;
     }
 
-    public LoginPage loginPage(ChromeDriver driver, LoginPage clickSubmitButtonSuccess) {
-        new LoginPage();
-        LoginPage.enterEmailAddress("projectgigatron@gmail.com");
-        LoginPage.enterPassword("passwordon1");
-        return clickSubmitButtonSuccess;
+
+    public KorisnikPage loginToKorisnikPage (ChromeDriver driver) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterEmailAddress(Strings.VALID_USER);
+        loginPage.enterPassword(Strings.VALID_PASSWORD);
+        KorisnikPage korisnikPage = loginPage.clickSubmitButtonSuccess();
+        return korisnikPage;
     }
 
 
-    //Hardcodovani sleep. Tj. on samo ceka 2 sekunde
+    //Hardcodovani sleep. on samo ceka 10 sekundi
     public void sleep(){
         try{
             Thread.sleep(10000);
