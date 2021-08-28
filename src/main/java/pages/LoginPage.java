@@ -50,9 +50,6 @@ public class LoginPage {
         this.driver=driver;
     }
 
-    @org.jetbrains.annotations.Contract(pure=true)
-    public LoginPage () {
-    }
 
     public LoginPage enterEmailAddress (String emailField, WebElement email) {
         assert email.isDisplayed();
@@ -71,6 +68,9 @@ public class LoginPage {
     }
 
     public static void enterPassword(String validPassword) {
+    }
+    @org.jetbrains.annotations.Contract(pure=true)
+    public LoginPage () {
     }
 
 //    public String getErrorMessage() {
