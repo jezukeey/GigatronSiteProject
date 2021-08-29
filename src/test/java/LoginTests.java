@@ -62,17 +62,22 @@ public class LoginTests extends BaseTest {
 
         ChromeDriver driver = openChromeDriver();
         driver.get(Strings.LOGIN_URL);
+        sleep();
         WebElement userNameField=driver.findElement(By.id("email"));
         userNameField.click();
+        sleep();
         userNameField.sendKeys(Strings.VALID_USER);
         WebElement passwordField=driver.findElement(By.id("password"));
         passwordField.click();
+        sleep();
         passwordField.sendKeys(Strings.VALID_PASSWORD);
         WebElement loginButton=driver.findElement(By.id("loginSubmit"));
         loginButton.click();
+        sleep();
         String currentPageURL = driver.getCurrentUrl();
         Assert.assertFalse("Došlo je do greške. Expected url : " + Strings.KORISNIK_URL +
                 ". Actual: " + currentPageURL, currentPageURL.contains(Strings.KORISNIK_URL));
+        sleep();
         WebElement logOutButton=driver.findElement(By.id("logOutButton"));
         logOutButton.click();
 

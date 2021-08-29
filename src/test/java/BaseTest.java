@@ -32,7 +32,7 @@ public class BaseTest {
     //Hardcodovani sleep. on samo ceka 10 sekundi
     public void sleep(){
         try{
-            Thread.sleep(10000);
+            Thread.sleep(3000);
 
         } catch (Exception e) {}
     }
