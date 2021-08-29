@@ -13,8 +13,6 @@ import java.time.Duration;
 
 public class BasePage {
 
-
-
     //Side bar burger button
     @FindBy(className="burger-button")
     WebElement proizvodiSideBarLink;
@@ -43,12 +41,9 @@ public class BasePage {
     @FindBy(id="loginSubmit")
     WebElement loginSubmitButton;
 
-    //Button for submitting logOut
-    @FindBy(id="/logout")
-    WebElement logoutButton;
-
 
     ChromeDriver driver = null;
+
 
     public BasePage(ChromeDriver driver) {
         PageFactory.initElements(driver, this);
@@ -60,10 +55,6 @@ public class BasePage {
         return this;
     }
 
-    public BasePage clickLogoutButton() {
-        dropdownMenuBar.click();
-        return this;
-    }
 
 
 

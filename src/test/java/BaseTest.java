@@ -11,10 +11,10 @@ public class BaseTest {
 
     public ChromeDriver openChromeDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        options.addArguments(" --ignore-certificate-errors");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--incognito");
+        options.addArguments(new String[]{"--start-maximized"});
+        options.addArguments(new String[]{"--ignore-certificate-errors"});
+        options.addArguments(new String[]{"--disable-popup-blocking"});
+        options.addArguments(new String[]{"--incognito"});
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         ChromeDriver driver = new ChromeDriver(options);
         return driver;
@@ -25,8 +25,7 @@ public class BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterEmailAddress(Strings.VALID_USER);
         loginPage.enterPassword(Strings.VALID_PASSWORD);
-        KorisnikPage korisnikPage = loginPage.clickSubmitButtonSuccess();
-        return korisnikPage;
+        return loginPage.clickSubmitButtonSuccess();
     }
 
 

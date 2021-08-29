@@ -1,3 +1,4 @@
+import io.opentelemetry.api.internal.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,7 +13,8 @@ import java.util.concurrent.atomic.AtomicReference;
 public class LoginTests extends BaseTest {
 
 
-        /**
+
+    /**
      * Test - Successful login with valid credentials
      * Steps:
      * 1. Navigate to gigatron site
@@ -24,9 +26,10 @@ public class LoginTests extends BaseTest {
      * 4.Verify that user is logged in
      */
     @Test
+
     public void testSuccessfulLogIn() {
         ChromeDriver driver = openChromeDriver();
-        LoginPage loginPage = new LoginPage(driver);
+        driver.get(Strings.LOGIN_URL);
         WebElement userNameField=driver.findElement(By.id("email"));
         userNameField.click();
         userNameField.sendKeys(Strings.VALID_USER);
@@ -36,18 +39,51 @@ public class LoginTests extends BaseTest {
         WebElement loginButton=driver.findElement(By.id("loginSubmit"));
         loginButton.click();
        String currentPageURL = driver.getCurrentUrl();
-        Assert.assertTrue("We are not logged in. Expected url : " + Strings.KORISNIK_URL +
+        Assert.assertFalse("Došlo je do greške. Expected url : " + Strings.KORISNIK_URL +
                 ". Actual: " + currentPageURL, currentPageURL.contains(Strings.KORISNIK_URL));
-//        KorisnikPage.clickBurgerButton()
-//                .clickLogout();
+
+        driver.quit();
+    }
+
+    /**
+     * Test - Successful login with valid credentials and log out
+     * Steps:
+     * 1. Navigate to gigatron site
+     * 2. enter valid username
+     * 3. enter valid password
+     * 4.click login button
+     * <p>
+     * Expected result:
+     * 4.Verify that user is logged in
+     */
+    @Test
+
+    public void testSuccessfulLogInAndLogOut () {
+
+        ChromeDriver driver = openChromeDriver();
+        driver.get(Strings.LOGIN_URL);
+        WebElement userNameField=driver.findElement(By.id("email"));
+        userNameField.click();
+        userNameField.sendKeys(Strings.VALID_USER);
+        WebElement passwordField=driver.findElement(By.id("password"));
+        passwordField.click();
+        passwordField.sendKeys(Strings.VALID_PASSWORD);
+        WebElement loginButton=driver.findElement(By.id("loginSubmit"));
+        loginButton.click();
+        String currentPageURL = driver.getCurrentUrl();
+        Assert.assertFalse("Došlo je do greške. Expected url : " + Strings.KORISNIK_URL +
+                ". Actual: " + currentPageURL, currentPageURL.contains(Strings.KORISNIK_URL));
+        WebElement logOutButton=driver.findElement(By.id("logOutButton"));
+        logOutButton.click();
 
         driver.quit();
     }
 
 
 
+
 //    /**
-//     * Test - Successful login with valid credentials
+//     * Test - Unsuccessful login with valid credentials
 //     * Steps:
 //     * 1. Navigate to sauce lab demo site
 //     * 2. enter valid username
