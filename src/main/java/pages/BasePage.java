@@ -33,13 +33,11 @@ public class BasePage {
     @FindBy(className="drop-menu-holder")
     WebElement dropdownMenuBar;
 
-    //Logout drop down menu
-    @FindBy(className="drop-menu-holder")
-    WebElement getDropdownMenuBar;
+    //Click cookie button
+    @FindBy(className="btn primary")
+    WebElement cookieButton;
 
-    //Button for submitting login
-    @FindBy(id="loginSubmit")
-    WebElement loginSubmitButton;
+
 
 
     ChromeDriver driver = null;
@@ -50,12 +48,14 @@ public class BasePage {
         this.driver = driver;
     }
 
+    public BasePage clickCookieButton() {
+        cookieButton.click();
+        return this;
+    }
+
     public BasePage clickBurgerButton() {
         proizvodiSideBarLink.click();
         return this;
     }
-
-
-
 
 }

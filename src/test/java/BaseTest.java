@@ -25,23 +25,17 @@ public class BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterEmailAddress(Strings.VALID_USER);
         loginPage.enterPassword(Strings.VALID_PASSWORD);
-        return loginPage.clickSubmitButtonSuccess();
+        KorisnikPage korisnikPage = loginPage.clickSubmitButtonSuccess();
+        return korisnikPage;
     }
 
 
     //Hardcodovani sleep. on samo ceka 10 sekundi
     public void sleep(){
         try{
-            Thread.sleep(10000);
+            Thread.sleep(3000);
 
         } catch (Exception e) {}
     }
-    //    public void testSuccessfulLogIn() {
-//        ChromeDriver driver =  openChromeDriver();
-//        LoginPage loginPage = new LoginPage(driver);
-//        loginPage.enterUserName("standard_user");
-//        loginPage.enterPassword("secret_sauce");
-//        InventoryPage inventoryPage = loginPage.clickSubmitButtonSuccess();
-//        inventoryPage.getAllItems();
-//        inventoryPage.findItemByName("Sauce Labs Bike Light");
+
 }

@@ -11,32 +11,28 @@ import java.time.Duration;
 
 public class LoginPage {
 
-//    public static String VALID_USER="VALID_USER";
-//    public static String VALID_PASSWORD="VALID_PASSWORD";
-
     //Page Prijava
-    @FindBy (id = "Login")
+    @FindBy(id = "Login")
     WebElement loginForm;
 
-//    //  Ulogujte se koristeci Vas email i lozinku.
-//    @FindBy(id = "hd-reg")
-//    WebElement prijavaField;
 
     // Enter userName in filed
     @FindBy(id = "email")
     WebElement emailField;
 
     //  Enter password in field
-    @FindBy(className ="form-password")
+    @FindBy(id = "password")
     WebElement passwordField;
+
+    //Log out button on login page
+    @FindBy(className = "fa fa-sign-out")
+    WebElement logOutButton;
 
     // Prijava click login button
     @FindBy(id = "loginSubmit")
     WebElement loginSubmitButton;
 
-    // Cookie pop up
-    @FindBy(id = "loginSubmit")
-    WebElement acceptCookieButton;
+
 
     // Fill up form container showing that you need to enter email and password
     @FindBy(tagName = "Ulogujte se koristeći Vaš email i lozinku.")
@@ -68,7 +64,7 @@ public class LoginPage {
     }
 
     public LoginPage enterPassword(String password) {
-        passwordField.sendKeys(password);
+        passwordField.sendKeys( password );
         return this;
     }
 
@@ -76,7 +72,22 @@ public class LoginPage {
         loginSubmitButton.click();
         return new KorisnikPage(driver);
     }
-//    // Ovaj ces da koristis za side bar burger button
+    public BasePage logOutButton () {
+        logOutButton.click();
+        return new BasePage(driver);
+    }
+
+    public KorisnikPage clickLoginSubmitButton() {
+        loginSubmitButton.click();
+        return new KorisnikPage(driver);
+    }
+
+
+    public String getErrorMessage() {
+        return errorMessageContainer.getText();
+    }
+
+    //    // Ovaj ces da koristis za side bar burger button
 //    public LoginPage clickLogout() {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 //        wait.until(ExpectedConditions.visibilityOf(logOutSideBarLink));
@@ -84,16 +95,6 @@ public class LoginPage {
 //        return new LoginPage(driver);
 //    }
 
-
-    public LoginPage clickSubmitButtonFailure() {
-        loginSubmitButton.click();
-        return this;
-    }
-
-
-    public String getErrorMessage() {
-        return errorMessageContainer.getText();
-    }
 //    public LoginPage clickLogOut() {
 //        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 //        wait.until(ExpectedConditions.visibilityOf(logOutSideBarLink));

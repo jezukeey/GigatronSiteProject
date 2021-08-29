@@ -11,10 +11,10 @@ public class SortingTests extends BasePage {
         super(driver);
     }
 
-    //Test for sorting in ascending order
+//    //Test for sorting price in ascending order
 //    @Test
 //    public void testSortingByPriceAscending() {
-//        ChromeDriver driver =  openChromeDriver();
+//        ChromeDriver driver = openChromeDriver();
 //        try {
 //            KorisnikPage inventoryPage = loginToKorisnikPage(driver);
 //            List<String> itemPricesUnsorted = inventoryPage.getAllItemPrices();

@@ -25,9 +25,21 @@ public class KorisnikPage extends BasePage {
     @FindBy (className="active")
     WebElement pocetnaPage;
 
+    // Korisnik dropdown menu
+    @FindBy (className="user-identity-name")
+    WebElement userDropDownMenu;
+
     //Log out button on login page
     @FindBy(className = "fa fa-sign-out")
     WebElement logOutButton;
+
+    //Button for submitting login
+    @FindBy(id="loginSubmit")
+    WebElement logInButton;
+
+    // Prijava click login button OVOVSI SINOC PREKOPIRAO IZ LOGINPAGE
+    @FindBy(id = "loginSubmit")
+    WebElement loginSubmitButton;
 
     // Method showing that if we are successfully logged in
 
@@ -36,13 +48,26 @@ public class KorisnikPage extends BasePage {
     public KorisnikPage(ChromeDriver driver) {
         super(driver);
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertFalse("Došlo je do greške. Expected : "
-                + Strings.KORISNIK_URL + " Actual: " + currentUrl, currentUrl.equals(Strings.KORISNIK_URL));
+        Assert.assertTrue("Došlo je do greške. Expected : "
+                + Strings.LOGIN_URL + " Actual: " + currentUrl, currentUrl.equals(Strings.KORISNIK_URL));
     }
 
-    public BasePage clickLogoutButton() {
+    public BasePage logOutButton() {
         logOutButton.click();
         return new BasePage(driver);
+    }
+    public BasePage clicklogInButton () {
+        logInButton.click();
+        return this;
+    }
+    public KorisnikPage clickSubmitButtonSuccess() {
+        loginSubmitButton.click();
+        return new KorisnikPage(driver);
+    }
+
+    public KorisnikPage clickLoginSubmitButton() {
+        loginSubmitButton.click();
+        return new KorisnikPage(driver);
     }
 
 }
