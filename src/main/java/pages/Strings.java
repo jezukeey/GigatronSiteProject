@@ -28,6 +28,10 @@ public class Strings {
     public static final String PROIZVODI_SIDE_BAR_URL = "https://www.gigatron.rs/";
     public static final String GIGATRON_PRIME_EXTREME_ULTRA = "https://www.gigatron.rs/";
     public static final String GIGATRON_PRIME_PBA_FORCE = "https://www.gigatron.rs/";
+    public static final String LENOVO_LAPTOP = "https://gigatron.rs/laptop-racunari/lenovo-ideapad-3-14ada05-81w0005tya-385007";
+    public static final String LENOVO_LAPTOP_BUY = "https://gigatron.rs/laptop-racunari/dell-vostro-14-3401-not16732-404375";
+    public static final String KORPA_URL = "https://gigatron.rs/korpa";
+    public static final String USPESNA_KUPOVINA_URL = "https://gigatron.rs/uspesna-kupovina";
 
 
     //item names
@@ -37,7 +41,13 @@ public class Strings {
 
 
     //error message
-    public static final String LOGIN_ERROR_MESSAGE = "Doslo je do greske. Korisnik nije pronaden ili je neispravna lozinka.";
+    public static final String LOGIN_ERROR_MESSAGE = "Došlo je do greške. Korisnik nije pronađen ili je neispravna lozinka.";
+    //logged in message
+    public static final String LOGIN_MESSAGE = "KORISCENJE PODATAKA KORISNIKA";
+    //successful purchase error message
+    public static final String SUCCESSFUL_PURCHASE_ERROR_MESSAGE = "DOŠLO JE DO GREŠKE PRILIKOM PROCESUIRANJA VAŠE PORUDŽBINE";
+    //successful purchase message
+    public static final String SUCCESSFUL_PURCHASE_MESSAGE = "Vaša porudžbenica je uspešno kreirana!";
 
 
     //Sort options

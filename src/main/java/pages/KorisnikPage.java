@@ -1,15 +1,9 @@
 package pages;
 
 import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class KorisnikPage extends BasePage {
 
@@ -30,7 +24,7 @@ public class KorisnikPage extends BasePage {
     WebElement userDropDownMenu;
 
     //Log out button on login page
-    @FindBy(className = "fa fa-sign-out")
+    @FindBy(xpath="//i[contains(@class, 'fa-sign-out' ) ]")
     WebElement logOutButton;
 
     //Button for submitting login
@@ -42,24 +36,21 @@ public class KorisnikPage extends BasePage {
     WebElement loginSubmitButton;
 
     // Method showing that if we are successfully logged in
-
-
-
     public KorisnikPage(ChromeDriver driver) {
         super(driver);
         String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue("Došlo je do greške. Expected : "
+        Assert.assertFalse("Došlo je do greške. Expected : "
                 + Strings.LOGIN_URL + " Actual: " + currentUrl, currentUrl.equals(Strings.KORISNIK_URL));
     }
 
-    public BasePage logOutButton() {
-        logOutButton.click();
-        return new BasePage(driver);
-    }
-    public BasePage clicklogInButton () {
-        logInButton.click();
-        return this;
-    }
+
+
+
+//    public WebElement logOutButton() {
+//        logOutButton.click();
+//        return new BasePage(driver);
+//    }
+
     public KorisnikPage clickSubmitButtonSuccess() {
         loginSubmitButton.click();
         return new KorisnikPage(driver);
@@ -69,5 +60,6 @@ public class KorisnikPage extends BasePage {
         loginSubmitButton.click();
         return new KorisnikPage(driver);
     }
+
 
 }

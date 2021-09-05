@@ -1,15 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class BasePage {
 
@@ -18,7 +12,7 @@ public class BasePage {
     WebElement proizvodiSideBarLink;
 
     //Side bar close burger button
-    @FindBy (xpath = "[/@class = \"close-menu\"]")
+    @FindBy (xpath="//*[@id=\"navigation\"]/nav/div/div/div[1]/div/div/div/div/button/img")
     WebElement closeBurgerButton;
 
     //Polje za prijavu
@@ -33,29 +27,49 @@ public class BasePage {
     @FindBy(className="drop-menu-holder")
     WebElement dropdownMenuBar;
 
-    //Click cookie button
-    @FindBy(className="btn primary")
-    WebElement cookieButton;
-
-
-
 
     ChromeDriver driver = null;
-
 
     public BasePage(ChromeDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public BasePage clickCookieButton() {
-        cookieButton.click();
-        return this;
+
+
+//    //Click accept cookie button
+//    @FindBy(By.xpath("//*[text()='Prihvatam']"))
+//    WebElement acceptCookieButton;
+
+
+    public KorisnikPage loginToKorisnikPage (ChromeDriver driver) {
+        LoginPage loginPage=new LoginPage(driver);
+        loginPage.enterEmailAddress(Strings.VALID_USER);
+        loginPage.enterPassword(Strings.VALID_PASSWORD);
+        KorisnikPage korisnikPage=loginPage.clickSubmitButtonSuccess();
+        return korisnikPage;
     }
+
+
+
+//    ChromeDriver driver = null;
+//    private WebElement acceptCookieButton;
+//
+//
+//    public BasePage(ChromeDriver driver) {
+//        PageFactory.initElements(driver, this);
+//        this.driver = driver;
+//    }
+
 
     public BasePage clickBurgerButton() {
         proizvodiSideBarLink.click();
         return this;
     }
+    public void print (String s) {
+        System.out.println(s);
+    }
+
+
 
 }

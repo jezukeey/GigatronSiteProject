@@ -1,10 +1,5 @@
-import org.junit.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.BasePage;
-import pages.KorisnikPage;
-import pages.Strings;
-
-import java.util.List;
 
 public class SortingTests extends BasePage {
     public SortingTests (ChromeDriver driver) {
@@ -32,7 +27,8 @@ public class SortingTests extends BasePage {
 //
 //    }
 //
-//    private KorisnikPage loginToKorisnikPage (ChromeDriver driver) {
+//    @Contract(pure=true)
+//    private @Nullable KorisnikPage loginToKorisnikPage (ChromeDriver driver) {
 //        return null;
 //    }
 

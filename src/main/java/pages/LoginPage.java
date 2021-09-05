@@ -4,10 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class LoginPage {
 
@@ -25,7 +21,7 @@ public class LoginPage {
     WebElement passwordField;
 
     //Log out button on login page
-    @FindBy(className = "fa fa-sign-out")
+    @FindBy(xpath="//i[contains(@class, 'fa-sign-out' ) ]")
     WebElement logOutButton;
 
     // Prijava click login button
@@ -43,7 +39,7 @@ public class LoginPage {
     WebElement loggedInUser;
 
     // Log in page ERROR message
-    @FindBy(linkText = "class=lass=\"page-message message-error\"")
+    @FindBy(xpath = ".//*[ contains (text(), 'Došlo je do greške') ]")
     WebElement errorMessageContainer;
 
     @FindBy(className = "form-control-info")
@@ -72,7 +68,8 @@ public class LoginPage {
         loginSubmitButton.click();
         return new KorisnikPage(driver);
     }
-    public BasePage logOutButton () {
+    //PREBACIO SI NA BASE PAGE
+    public BasePage clickLogOutButton () {
         logOutButton.click();
         return new BasePage(driver);
     }
@@ -81,11 +78,11 @@ public class LoginPage {
         loginSubmitButton.click();
         return new KorisnikPage(driver);
     }
-
-
-    public String getErrorMessage() {
-        return errorMessageContainer.getText();
+    public String getErrorMessage () {
+        String errorMessage =errorMessageContainer.getText();;
+        return errorMessage;
     }
+
 
     //    // Ovaj ces da koristis za side bar burger button
 //    public LoginPage clickLogout() {
@@ -106,4 +103,7 @@ public class LoginPage {
 //        String errorMessage = errorMessageContainer.getText();
 //        return errorMessage;
 //    }
+
+
+
 }

@@ -1,0 +1,74 @@
+Index: src/test/java/ShoppingTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/ShoppingTests.java b/src/test/java/ShoppingTests.java
+--- a/src/test/java/ShoppingTests.java	
++++ b/src/test/java/ShoppingTests.java	(date 1630427222916)
+@@ -1,8 +1,11 @@
+ import org.junit.Test;
+ import org.openqa.selenium.By;
+ import org.openqa.selenium.chrome.ChromeDriver;
++import org.openqa.selenium.support.FindBy;
+ import org.openqa.selenium.support.ui.WebDriverWait;
+-import pages.Strings;
++import org.w3c.dom.css.CSSValue;
++import pages.BasePage;
++import pages.*;
+ 
+ import java.time.Duration;
+ 
+@@ -95,9 +98,8 @@
+         sleep();
+         driver.findElement(By.xpath("//button[normalize-space()='Dalje']")).click();
+         wait=new WebDriverWait(driver, Duration.ofSeconds(5));
+-        //Customer e-mail
+-        driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(Strings.VALID_USER);
+-
++        //Customer data
++        driver.findElement(By.xpath("//*[@id=\"name\"]")).sendKeys(String.);
+ 
+         wait=new WebDriverWait(driver, Duration.ofSeconds(5));
+ 
+@@ -112,10 +114,36 @@
+         }
+         System.out.println("You are back on Base page");
+ 
+-    } finally {
+-        }
+-        driver.quit();
+-    }
++
++    // Test case : Verify correct products images are shown when selected category
++// Test steps: 1. Navigate to www.winwin.rs
++//             2. Select the drop down menu "Proizvodi"
++//             3. Select „Bela tehnika“
++//             4.Select " veš mašine"
++//             5.Select " Mašine za pranje veša"
++//
++// Expected result:
++// Products images are shown
++//    @Test
++//
++//    public void PrnosniRacunari() {
++//        ChromeDriver driver = new ChromeDriver();
++//
++//        //navigates to url and shuts down push notifications
++//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
++//        driver.get("https://gigatron.rs/prenosni-racunari");
++//        driver.manage().window().maximize();
++//        //selects elements from dropdown menu
++//        sleep();
++//        driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/h2[1]/a[1]")).click();
++//        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
++//        sleep();
++//        driver.findElement(By.xpath("//html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/select[1]")).click();
++//        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
++//        System.out.println("Landed in wrong URL");
++//
++//        driver.quit();
++//    }
+ 
+ 
+ }
