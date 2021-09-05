@@ -1,0 +1,6 @@
+pages\BasePage.class
+pages\SideBarMenu.class
+pages\Strings.class
+pages\PrenosniRacunariPage.class
+pages\KorisnikPage.class
+pages\LoginPage.class
