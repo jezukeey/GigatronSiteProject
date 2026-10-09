@@ -1,2 +1,12 @@
-
+# Java compiled files
 *.class
+
+# Maven build output
+/target/
+
+# IntelliJ local settings
+/.idea/
+*.iml
+
+# Local ChromeDriver files
+/chromedriver*.exe
