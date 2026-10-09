@@ -103,7 +103,7 @@ public class ShoppingTests extends BaseTest {
         driver.findElement(By.xpath("//button[normalize-space()='Dalje']")).click();
         wait=new WebDriverWait(driver, Duration.ofSeconds(5));
         //Customer e-mail
-        driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(Strings.VALID_USER);
+        driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(Strings.VALID_EMAIL);
 
         //Customer address
         driver.findElement(By.xpath("//*[@id=\"address\"]")).sendKeys("Gigatronska");

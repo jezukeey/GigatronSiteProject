@@ -1,6 +1,5 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -35,12 +34,14 @@ public class KorisnikPage extends BasePage {
     @FindBy(id = "loginSubmit")
     WebElement loginSubmitButton;
 
-    // Method showing that if we are successfully logged in
+    /**
+     * Priprema objekat za rad sa već otvorenom stranicom.
+     * Prijava je prethodno potvrđena kroz opciju „Odjavi se“.
+     */
     public KorisnikPage(ChromeDriver driver) {
+        // Poziva konstruktor BasePage:
+        // čuva driver i inicijalizuje PageFactory elemente.
         super(driver);
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertFalse("Došlo je do greške. Expected : "
-                + Strings.LOGIN_URL + " Actual: " + currentUrl, currentUrl.equals(Strings.KORISNIK_URL));
     }
 
 

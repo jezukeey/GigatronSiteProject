@@ -2,16 +2,20 @@ package pages;
 
 public class Strings {
     //usernames
-    public static final String VALID_USER = "projectgigatron@gmail.com";
-    public static final String INVALID_USER = "zastonece@gmail.com";
+    public static final String VALID_EMAIL = "projectgigatron@gmail.com";
+    public static final String INVALID_EMAIL = "zastonece@gmail.com";
 
     //password
-    public static final String VALID_PASSWORD = "passwordon1";
+
+    // Čita lozinku iz lokalne promenljive okruženja.
+    public static final String VALID_PASSWORD =
+            System.getenv("GIGATRON_TEST_PASSWORD");
     public static final String INVALID_PASSWORD = "invalidpassword";
 
     //urls
     public static final String MAIN_URL = "https://gigatron.rs/";
-    public static final String LOGIN_URL = "https://www.gigatron.rs/login";
+    public static final String LOGIN_URL =
+            "https://secure.gigatron.rs/login?returnUrl=https%3A%2F%2Fsecure.gigatron.rs%2Fheadless-login%2Fcomplete%3Fenv%3Dproduction%26path%3D%252F";
     public static final String KORISNIK_URL = "https://www.gigatron.rs/korisnik";
     public static final String AKCIJE_URL = "https://www.gigatron.rs/akcije";
     public static final String NOVOSTI_URL = "https://www.gigatron.rs/novosti";
