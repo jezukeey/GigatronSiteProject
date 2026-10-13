@@ -1,41 +1,47 @@
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.KorisnikPage;
 import pages.LoginPage;
 import pages.Strings;
 
+public abstract class BaseTest {
+    protected ChromeDriver driver;
 
-public class BaseTest {
-    ChromeDriver driver = null;
-
+    @Before
+    public void startBrowser() {
+        driver = openChromeDriver();
+    }
 
     public ChromeDriver openChromeDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments(new String[]{"--start-maximized"});
-        options.addArguments(new String[]{"--ignore-certificate-errors"});
-        options.addArguments(new String[]{"--disable-popup-blocking"});
-        options.addArguments(new String[]{"--incognito"});
-        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        ChromeDriver driver = new ChromeDriver(options);
-        return driver;
+        options.addArguments("--start-maximized", "--incognito", "--disable-features=Translate");
+        if (Boolean.getBoolean("headless")) {
+            options.addArguments("--headless=new", "--window-size=1440,1000");
+        }
+        ChromeDriver browser = new ChromeDriver(options);
+        if (Boolean.getBoolean("headless")) {
+            browser.manage().window().setSize(new org.openqa.selenium.Dimension(1440, 1000));
+        }
+        browser.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(45));
+        browser.manage().timeouts().scriptTimeout(java.time.Duration.ofSeconds(15));
+        return browser;
     }
 
-
-    public KorisnikPage loginToKorisnikPage (ChromeDriver driver) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterEmailAddress(Strings.VALID_USER);
-        loginPage.enterPassword(Strings.VALID_PASSWORD);
-        KorisnikPage korisnikPage = loginPage.clickSubmitButtonSuccess();
-        return korisnikPage;
+    @After
+    public void stopBrowser() {
+        if (driver != null) {
+            try { driver.quit(); }
+            finally { driver = null; }
+        }
     }
 
-
-    //Hardcodovani sleep. on samo ceka 10 sekundi
-    public void sleep(){
-        try{
-            Thread.sleep(3000);
-
-        } catch (Exception e) {}
+    public KorisnikPage loginToKorisnikPage(ChromeDriver browser) {
+        browser.get(Strings.MAIN_URL);
+        return new LoginPage(browser).openFromHomePage()
+                .enterEmailAddress(Strings.VALID_EMAIL)
+                .enterPassword(Strings.VALID_PASSWORD)
+                .clickSubmitButtonSuccess();
     }
-
 }
