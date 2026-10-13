@@ -27,7 +27,7 @@ public class Strings {
     public static final String GAMING_URL = "https://www.gigatron.rs/gaming";
     public static final String KONTAKT_URL = "https://www.gigatron.rs/kontakt";
     public static final String ZAPOSLENJE_URL = "https://www.gigatron.rs/karijera";
-    public static final String PRENOSNI_RACUNARI_URL = "https://gigatron.rs/prenosni-racunari";
+    public static final String PRENOSNI_RACUNARI_URL = "https://gigatron.rs/laptop-racunari-i-it-oprema/laptop-racunari";
     public static final String RACUNARI_I_KOMPONENTE_URL = "https://gigatron.rs/racunari-i-komponente.html";
     public static final String PROIZVODI_SIDE_BAR_URL = "https://www.gigatron.rs/";
     public static final String GIGATRON_PRIME_EXTREME_ULTRA = "https://www.gigatron.rs/";

@@ -5,7 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,15 +38,15 @@ public class LoginPage {
     private final By loginError =
             By.cssSelector(".vtex-login-2-x-formError[role='alert']");
 
-    // Trenutni test nalog prikazuje ime „Petar“.
+    // Kontrola profila postoji i kada ime naloga nije vidljivo.
     private final By accountMenu =
-            By.xpath("//span[normalize-space()='Petar' and not(*)]");
+            By.cssSelector("[aria-label='Moj profil']");
 
     private final By logoutOption =
-            By.xpath("//button[normalize-space()='Odjavi se']");
+            By.xpath("//*[self::button or self::a][normalize-space()='Odjavi se']");
 
     private final By signInLabel =
-            By.xpath("//span[normalize-space()='Prijava' and not(*)]");
+            By.cssSelector("a[aria-label='Prijavi se']");
 
     /**
      * Priprema objekat za postojeći browser.
@@ -132,19 +132,22 @@ public class LoginPage {
      * Ne ispisuje email ni lozinku.
      */
     private void replaceFieldValue(By locator, String value) {
-        // Pronalazi vidljivo i omogućeno polje.
-        WebElement field = findReadyField(locator);
-
-        // Označava sadržaj, otpušta Ctrl, briše i unosi novu vrednost.
-        new Actions(driver)
-                .click(field)
-                .keyDown(Keys.CONTROL)
-                .sendKeys("a")
-                .keyUp(Keys.CONTROL)
-                .sendKeys(Keys.BACK_SPACE)
-                .sendKeys(value)
-                .perform();
-
+        boolean completed = false;
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                WebElement field = findReadyField(locator);
+                field.click();
+                field = findReadyField(locator);
+                field.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE, value);
+                completed = true;
+                break;
+            } catch (StaleElementReferenceException ignored) {
+                // Novi pokušaj prvo briše eventualni delimični unos.
+            }
+        }
+        if (!completed) {
+            throw new IllegalStateException("Polje je zamenjeno tokom tri pokušaja: " + locator);
+        }
         // Proverava sadržaj bez ponavljanja unosa.
         WebDriverWait valueWait =
                 new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -207,7 +210,12 @@ public class LoginPage {
      * Grešku prijave prijavljuje sa tekstom koji prikazuje sajt.
      */
     public LoginPage waitForSuccessfulLogin() {
-        wait.until(browser -> {
+        WebDriverWait profileWait = new WebDriverWait(driver, Duration.ofSeconds(45));
+        profileWait.withMessage(() -> "Prijava nije potvrđena. URL: " + driver.getCurrentUrl()
+                + "; kontrole: " + driver.findElements(By.cssSelector("header a, header button, [role=alert]"))
+                .stream().filter(e -> e.isDisplayed()).map(e -> e.getText() + " / " + e.getDomAttribute("aria-label"))
+                .collect(java.util.stream.Collectors.joining(" | ")));
+        profileWait.until(browser -> {
             // Najpre proverava da li je prijavljeni nalog prikazan.
             for (WebElement account : browser.findElements(accountMenu)) {
                 try {
@@ -263,14 +271,25 @@ public class LoginPage {
      * Klikće opciju „Odjavi se“ u otvorenom meniju.
      */
     public void logout() {
-        wait.until(
-                ExpectedConditions.elementToBeClickable(logoutOption)
-        ).click();
+        wait.until(browser -> {
+            for (WebElement option : browser.findElements(logoutOption)) {
+                try {
+                    if (option.isDisplayed() && option.isEnabled()) {
+                        option.click();
+                        return true;
+                    }
+                } catch (StaleElementReferenceException
+                         | org.openqa.selenium.ElementClickInterceptedException ignored) {
+                    // Vidljiv meni još može biti u animaciji; ponovo pokušava normalan klik.
+                }
+            }
+            return false;
+        });
     }
 
     /**
      * Čeka vidljivi tekst „Prijava“ nakon odjave.
-     * Prozor mora biti dovoljno širok da prikaže taj tekst.
+     * Koristi aria-label koji postoji na svim širinama prozora.
      */
     public boolean isSignInVisible() {
         return wait.until(

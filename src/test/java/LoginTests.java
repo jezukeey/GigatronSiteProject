@@ -1,4 +1,4 @@
-import org.junit.After;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,24 +26,10 @@ public class LoginTests extends BaseTest {
      */
     @Before
     public void setUp() {
-        driver = openChromeDriver();
-        driver.manage().window().maximize();
+
+
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         driver.get("https://gigatron.rs/");
-    }
-
-    /**
-     * Nakon svakog testa zatvara browser, čak i kada test padne.
-     */
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            try {
-                driver.quit();
-            } finally {
-                driver = null;
-            }
-        }
     }
 
     /**
@@ -417,6 +403,7 @@ public class LoginTests extends BaseTest {
      */
     @Test
     public void testSuccessfulLogInAndLogOut() {
+        chooseCookieOption("reject-button");
         LoginPage loginPage = openLoginPage();
 
         // Potvrđuje prijavu pre provere odjave.
