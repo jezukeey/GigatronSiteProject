@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest {
 
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        driver.get("https://gigatron.rs/");
+        driver.get(Strings.MAIN_URL);
     }
 
     /**

@@ -10,3 +10,8 @@
 
 # Local ChromeDriver files
 /chromedriver*.exe
+# Lokalni podaci i izvozi IDE istorije
+.env
+.env.*
+*.local
+/local_history.patch

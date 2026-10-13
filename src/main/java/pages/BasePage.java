@@ -43,16 +43,4 @@ public class BasePage {
         });
     }
 
-    public KorisnikPage loginToKorisnikPage(ChromeDriver browser) {
-        browser.get(Strings.MAIN_URL);
-        return new LoginPage(browser).openFromHomePage()
-                .enterEmailAddress(Strings.VALID_EMAIL)
-                .enterPassword(Strings.VALID_PASSWORD)
-                .clickSubmitButtonSuccess();
-    }
-
-    public BasePage clickBurgerButton() {
-        click(By.cssSelector("button[aria-label='Otvori meni']"));
-        return this;
-    }
 }

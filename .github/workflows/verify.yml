@@ -1,0 +1,32 @@
+name: Compile and unit tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      # Kompajlira sve klase, ali izvršava samo testove koji ne pristupaju prodajnom sajtu.
+      - name: Compile project and verify price parsing
+        run: mvn --batch-mode --no-transfer-progress -Punit clean test
+      - name: Save JUnit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore

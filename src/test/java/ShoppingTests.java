@@ -13,8 +13,8 @@ public class ShoppingTests extends BaseTest {
 
     @Test
     public void AddAndRemoveItem() {
-        String productUrl = "https://gigatron.rs/proizvod/asus-tuf-f16-fx608jmi-tu271-i7-4711636513531";
-        String productName = "ASUS TUF F16 FX608JMI-TU271 i7/16/512GB/5060";
+        String productUrl = Strings.TEST_PRODUCT_URL;
+        String productName = Strings.TEST_PRODUCT_NAME;
         String productPath = java.net.URI.create(productUrl).getPath();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
@@ -100,7 +100,7 @@ public class ShoppingTests extends BaseTest {
     /** Proverava checkout do Cloudflare provere; nastavak do plaćanja je ručni. */
     @Test
     public void GuestCheckoutToVerification() {
-        String productUrl = "https://gigatron.rs/proizvod/asus-tuf-f16-fx608jmi-tu271-i7-4711636513531";
+        String productUrl = Strings.TEST_PRODUCT_URL;
         String productPath = java.net.URI.create(productUrl).getPath();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         boolean productAdded = false;
@@ -109,7 +109,7 @@ public class ShoppingTests extends BaseTest {
             driver.get(productUrl);
             new pages.CookieConsent(driver).choose("reject-button");
             Assert.assertEquals("Otvoren je pogrešan proizvod.",
-                    "ASUS TUF F16 FX608JMI-TU271 i7/16/512GB/5060",
+                    Strings.TEST_PRODUCT_NAME,
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("h1"))).getText());
             clickVisible(wait, By.xpath("//button[normalize-space()='Dodaj u korpu']"));
             wait.until(ExpectedConditions.visibilityOfElementLocated(

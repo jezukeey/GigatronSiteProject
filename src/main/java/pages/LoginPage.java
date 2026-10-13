@@ -181,6 +181,12 @@ public class LoginPage {
         return findReadyField(emailField).getDomProperty("value");
     }
 
+    /** Proverava zaštitu prikaza lozinke; ne čita niti ispisuje njen sadržaj. */
+    public boolean isPasswordMasked() {
+        // Tip password znači da browser prikazuje maskirane znakove umesto teksta.
+        return "password".equals(findReadyField(passwordField).getDomAttribute("type"));
+    }
+
     /**
      * Proverava lozinku bez vraćanja njenog sadržaja testu.
      */

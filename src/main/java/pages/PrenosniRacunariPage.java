@@ -44,10 +44,9 @@ public class PrenosniRacunariPage extends BasePage {
                 List<BigDecimal> result = new ArrayList<>();
                 for (var element : browser.findElements(prices)) {
                     String text = element.getText();
-                    if (!text.isBlank()) {
-                        result.add(new BigDecimal(text.replace("RSD", "")
-                                .replace(".", "").replace(",", ".")
-                                .replaceAll("[\\s\\u00a0]", "")));
+                    if (element.isDisplayed() && !text.isBlank()) {
+                        // Zajednički parser proverava format pre poređenja cena.
+                        result.add(PriceParser.parse(text));
                     }
                 }
                 return result.size() >= 2 ? result : null;
