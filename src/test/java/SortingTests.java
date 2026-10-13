@@ -6,9 +6,29 @@ import pages.CookieConsent;
 import pages.PrenosniRacunariPage;
 
 public class SortingTests extends BaseTest {
+    /**
+     * Test - Sort laptop prices in ascending order
+     * Steps:
+     * 1. Open the laptop catalog and reject optional cookies.
+     * 2. Select the lowest-price sorting option and wait for the list to update.
+     * 3. Read at least two prices from the main product list.
+     * 4. Compare every adjacent pair of prices.
+     * Expected result:
+     * Each next price is greater than or equal to the previous price on the displayed results page.
+     */
     @Test
     public void testSortingByPriceAscending() { verifyOrder(true); }
 
+    /**
+     * Test - Sort laptop prices in descending order
+     * Steps:
+     * 1. Open the laptop catalog and reject optional cookies.
+     * 2. Select the highest-price sorting option and wait for the list to update.
+     * 3. Read at least two prices from the main product list.
+     * 4. Compare every adjacent pair of prices.
+     * Expected result:
+     * Each next price is less than or equal to the previous price on the displayed results page.
+     */
     @Test
     public void testSortingByPriceDescending() { verifyOrder(false); }
 

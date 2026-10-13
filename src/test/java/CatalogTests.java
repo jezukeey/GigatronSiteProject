@@ -8,6 +8,15 @@ import pages.Strings;
 
 /** Provere kataloga i prikaza proizvoda, bez korpe, prijave ili porudžbine. */
 public class CatalogTests extends BaseTest {
+    /**
+     * Test - Display positive prices in the laptop catalog
+     * Steps:
+     * 1. Open the laptop catalog and reject optional cookies.
+     * 2. Read prices from the visible main product list, excluding recommendations.
+     * 3. Check the number of prices and the sign of each price.
+     * Expected result:
+     * At least two visible product prices are returned and every price is greater than zero.
+     */
     @Test
     public void testLaptopCatalogContainsPositivePrices() {
         // Otvaramo glavnu listu laptopova i čekamo cene proizvoda.
@@ -21,6 +30,15 @@ public class CatalogTests extends BaseTest {
                 prices.stream().allMatch(price -> price.signum() > 0));
     }
 
+    /**
+     * Test - Display the expected product and an available cart button
+     * Steps:
+     * 1. Open the configured ASUS TUF F16 product and reject optional cookies.
+     * 2. Compare the URL path and visible name with the configured product.
+     * 3. Check that the Add to cart button is enabled without clicking it.
+     * Expected result:
+     * The correct product is displayed and adding it is available; the cart is not changed.
+     */
     @Test
     public void testProductNameAndAddToCartAvailability() {
         // Proveravamo poznati proizvod bez dodavanja u korpu.

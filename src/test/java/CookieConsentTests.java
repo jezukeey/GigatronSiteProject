@@ -5,11 +5,31 @@ import pages.Strings;
 
 /** Proverava pamćenje izbora, a ne samo nestanak cookie obaveštenja. */
 public class CookieConsentTests extends BaseTest {
+    /**
+     * Test - Remember cookie acceptance after refresh
+     * Steps:
+     * 1. Open the home page in a fresh browser session.
+     * 2. Accept all cookies and wait for the banner to disappear.
+     * 3. Refresh the page.
+     * 4. Check the banner after document loading and during a three-second observation period.
+     * Expected result:
+     * The banner does not reappear during the observation period.
+     */
     @Test
     public void testAcceptChoiceSurvivesRefresh() {
         verifyChoiceIsRemembered("accept-button");
     }
 
+    /**
+     * Test - Remember cookie rejection after refresh
+     * Steps:
+     * 1. Open the home page in a fresh browser session.
+     * 2. Reject optional cookies and wait for the banner to disappear.
+     * 3. Refresh the page.
+     * 4. Check the banner after document loading and during a three-second observation period.
+     * Expected result:
+     * The banner does not reappear during the observation period.
+     */
     @Test
     public void testRejectChoiceSurvivesRefresh() {
         verifyChoiceIsRemembered("reject-button");

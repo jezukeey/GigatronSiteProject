@@ -19,6 +19,16 @@ public class LoginFormTests extends BaseTest {
         loginPage = new LoginPage(driver).openFromHomePage();
     }
 
+    /**
+     * Test - Replace an already entered email
+     * Steps:
+     * 1. Open login from the home page after rejecting optional cookies.
+     * 2. Enter the first test email.
+     * 3. Enter a different test email into the same field.
+     * 4. Read the current email without submitting the form.
+     * Expected result:
+     * Only the second email is present; the previous value is not appended.
+     */
     @Test
     public void testEmailCanBeReplaced() {
         // Dva uzastopna unosa ne smeju se spojiti u jednu email adresu.
@@ -29,6 +39,16 @@ public class LoginFormTests extends BaseTest {
                 "second@example.invalid", loginPage.getEnteredEmail());
     }
 
+    /**
+     * Test - Clear an already entered email
+     * Steps:
+     * 1. Open login from the home page after rejecting optional cookies.
+     * 2. Enter a test email.
+     * 3. Replace its value with an empty string.
+     * 4. Read the current email without submitting the form.
+     * Expected result:
+     * The email field is empty.
+     */
     @Test
     public void testEmailCanBeCleared() {
         // Proveravamo da korisnik može obrisati već upisanu adresu.
@@ -38,6 +58,15 @@ public class LoginFormTests extends BaseTest {
         Assert.assertEquals("Email nije obrisan.", "", loginPage.getEnteredEmail());
     }
 
+    /**
+     * Test - Mask and replace a password without submitting login
+     * Steps:
+     * 1. Open login from the home page after rejecting optional cookies.
+     * 2. Enter an invented password, then replace it with another invented password.
+     * 3. Check the password input type and verify its value without printing it.
+     * Expected result:
+     * The input remains masked and contains only the second password; no login request is submitted.
+     */
     @Test
     public void testPasswordIsMaskedAndCanBeReplaced() {
         // Koristimo izmišljene vrednosti, ne lozinku naloga; ništa se ne šalje serveru.

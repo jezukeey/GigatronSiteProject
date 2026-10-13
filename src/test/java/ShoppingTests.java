@@ -11,6 +11,17 @@ import java.time.Duration;
 
 public class ShoppingTests extends BaseTest {
 
+    /**
+     * Test - Add a product and remove it from the cart
+     * Steps:
+     * 1. Open the configured ASUS TUF F16 product, reject optional cookies and verify its name.
+     * 2. Add one product and wait for the confirmation dialog.
+     * 3. Open the cart, locate the configured product and confirm its removal.
+     * 4. Verify the empty cart, refresh and verify it remains empty.
+     * 5. Return to the home page.
+     * Expected result:
+     * The configured product is removed, the cart remains empty after refresh and the home page is opened.
+     */
     @Test
     public void AddAndRemoveItem() {
         String productUrl = Strings.TEST_PRODUCT_URL;
@@ -97,7 +108,17 @@ public class ShoppingTests extends BaseTest {
         }
     }
 
-    /** Proverava checkout do Cloudflare provere; nastavak do plaćanja je ručni. */
+    /**
+     * Test - Reach the Cloudflare verification checkpoint as a guest
+     * Steps:
+     * 1. Open the configured ASUS TUF F16 product, reject optional cookies and verify its name.
+     * 2. Add one product, open the cart and continue to delivery without logging in.
+     * 3. Select store pickup and confirm G-62 Merkur in Novi Sad.
+     * 4. Verify the pickup selection and detect a visible Cloudflare challenge frame, including shadow DOM.
+     * 5. Remove the test product in cleanup; browser lifecycle closes the session.
+     * Expected result:
+     * The product, G-62 selection and challenge frame are confirmed, and cleanup succeeds. CAPTCHA completion, contact details and payment are not tested.
+     */
     @Test
     public void GuestCheckoutToVerification() {
         String productUrl = Strings.TEST_PRODUCT_URL;

@@ -136,12 +136,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Successful login with valid credentials
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Enter and verify valid credentials.
      * 3. Submit the form and open the account menu.
-     *
      * Expected result:
      * The "Odjavi se" option is visible.
      */
@@ -152,12 +150,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Accept all cookies
-     *
      * Steps:
      * 1. Wait for the cookie banner on the home page.
      * 2. Click "Prihvati sve".
      * 3. Wait for the banner to disappear.
-     *
      * Expected result:
      * The cookie banner is no longer visible.
      */
@@ -177,12 +173,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Login without choosing a cookie option
-     *
      * Steps:
      * 1. Wait for the cookie banner.
      * 2. Leave it without accepting, rejecting or closing it.
      * 3. Open login and sign in with valid credentials.
-     *
      * Expected result:
      * The "Odjavi se" option is visible.
      */
@@ -197,14 +191,12 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Successful login after accepting all cookies
-     *
      * Steps:
      * 1. Accept cookies on the home page.
      * 2. Wait for the banner to disappear.
      * 3. Open login and enter valid credentials.
      * 4. Verify field values and submit the form.
      * 5. Open the account menu.
-     *
      * Expected result:
      * The "Odjavi se" option is visible.
      */
@@ -219,12 +211,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Login after rejecting optional cookies
-     *
      * Steps:
      * 1. Click "Odbij sve" on the home page.
      * 2. Wait for the banner to disappear.
      * 3. Open login and sign in with valid credentials.
-     *
      * Expected result:
      * The "Odjavi se" option is visible.
      */
@@ -236,12 +226,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Valid email and invalid password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Enter valid email and invalid password.
      * 3. Submit and check the visible error and its text.
-     *
      * Expected result:
      * "Wrong user and/or password" is displayed.
      */
@@ -256,13 +244,11 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Nonexistent email and valid password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Enter a nonexistent email with valid email syntax.
      * 3. Enter the valid test account password.
      * 4. Submit and check the error.
-     *
      * Expected result:
      * "Wrong user and/or password" is displayed.
      */
@@ -277,12 +263,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Empty email and password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Leave both fields empty.
      * 3. Submit and check the error.
-     *
      * Expected result:
      * "Sign in with a valid email" is displayed.
      */
@@ -293,12 +277,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Valid email and empty password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Enter valid email and leave the password empty.
      * 3. Submit and check the error.
-     *
      * Expected result:
      * "Wrong user and/or password" is displayed.
      */
@@ -313,12 +295,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Nonexistent email and empty password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Enter a nonexistent email and leave the password empty.
      * 3. Submit and verify the visible error and its text.
-     *
      * Expected result:
      * The English or Serbian credentials error is displayed.
      */
@@ -351,12 +331,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Empty email and valid password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Leave email empty and enter valid password.
      * 3. Submit and check the error.
-     *
      * Expected result:
      * "Sign in with a valid email" is displayed.
      */
@@ -371,12 +349,10 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Empty email and invalid password
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Leave email empty and enter invalid password.
      * 3. Submit and check the error.
-     *
      * Expected result:
      * "Sign in with a valid email" is displayed.
      */
@@ -391,13 +367,11 @@ public class LoginTests extends BaseTest {
 
     /**
      * Test - Successful login and logout
-     *
      * Steps:
      * 1. Open login from the home page.
      * 2. Sign in and verify the logout option.
      * 3. Click "Odjavi se".
      * 4. Verify the sign-in label.
-     *
      * Expected result:
      * "Prijava" is visible after logout.
      */
