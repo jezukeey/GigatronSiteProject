@@ -31,17 +31,15 @@ GIGATRON_TEST_PASSWORD u okruženju procesa koji ih pokreće.
 SortingTests proverava rastuću i opadajuću cenu na trenutno prikazanoj
 stranici laptopova. Preporučeni proizvodi nisu deo te provere.
 
-## ShoppingTests — zajednička provera kasnije
+## ShoppingTests
 
 ShoppingTests je izostavljen iz podrazumevanog Maven pokretanja.
-Kod je kompajliran, ali shopping testovi nisu izvršeni tokom ovih ispravki.
-Popravljeni su životni ciklus browsera, čekanja, izbor tipa kupca i assertions.
-Stari lokatori, proizvodi i checkout koraci još zahtevaju proveru sa korisnikom
-na trenutnoj platformi. Ova klasa još nije potvrđena kao funkcionalna.
-
-CompleteBuyOfItem dodatno zahteva allowLivePurchase=true. Taj scenario može
-poslati stvarnu porudžbinu; ne uključivati ga pre dogovorene zajedničke provere.
-
+AddAndRemoveItem proverava dodavanje i uklanjanje ASUS TUF F16 laptopa; korisnik je potvrdio prolaz.
+GuestCheckoutToVerification proverava proizvod, guest checkout, izbor G-62 i prikaz Cloudflare provere.
+Prolaz znači samo da je test stigao do te provere. CAPTCHA, kontakt podaci i plaćanje nisu testirani.
+Test čisti korpu i zatvara browser. Ne šalje porudžbinu.
+Prethodni GuestCheckoutToPayment zamenjen je ovom metodom.
+Ručni nastavak do WSPay-a opisan je u [GUEST_CHECKOUT.md](GUEST_CHECKOUT.md).
 ## Struktura
 
 - BaseTest otvara browser pre testa i zatvara ga i kada test padne.
